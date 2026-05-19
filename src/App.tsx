@@ -216,7 +216,7 @@ function Hero() {
             <span className="text-primary-container">Certified</span> <span className="text-on-surface-variant">Excellence.</span>
           </h1>
           <p className="font-body text-base text-on-surface-variant max-w-xl mb-10 anim-fade-up" style={{ animationDelay: '0.45s' }}>
-            Factory-trained technicians, OEM parts, and a fully tooled Car-O-Liner facility &mdash; serving every GM, Stellantis, Nissan, Infiniti, Hyundai, and Kia driver in Miami-Dade.
+            Factory-trained technicians, OEM parts, and a fully tooled Car-O-Liner facility, serving every GM, Stellantis, Nissan, Infiniti, Hyundai, and Kia driver in Miami-Dade.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 anim-fade-up" style={{ animationDelay: '0.55s' }}>
             <a className="inline-flex justify-center items-center px-8 py-4 bg-primary-container text-on-primary-container font-headline font-bold uppercase tracking-widest-custom text-sm hover:bg-white transition-all duration-700 ease-in-out group" href="#schedule">
@@ -351,7 +351,7 @@ function BrandStrip() {
           </div>
           <div className="lg:col-span-5 reveal reveal-right">
             <p className="font-body text-sm md:text-base text-ink-muted leading-relaxed mb-6">
-              Williamson-Collision is factory-certified by every manufacturer in our showroom and beyond. We follow strict OEM repair procedures, use genuine parts, and operate the calibrated equipment required to keep your warranty &mdash; and your safety systems &mdash; intact.
+              Williamson-Collision is factory-certified by every manufacturer in our showroom and beyond. We follow strict OEM repair procedures, use genuine parts, and operate the calibrated equipment required to keep your warranty, and your safety systems, intact.
             </p>
             <div className="grid grid-cols-3 gap-px bg-paper-line">
               {[
@@ -429,7 +429,7 @@ function ServicesBento() {
             </h3>
           </div>
           <p className="md:col-span-5 font-body text-sm md:text-base text-on-surface-variant max-w-md leading-relaxed pb-1 reveal reveal-delay-2">
-            From frame straightening to color-matched refinish &mdash; every operation happens under one roof, performed by technicians trained to manufacturer standards.
+            From frame straightening to color-matched refinish. Every operation happens under one roof, performed by technicians trained to manufacturer standards.
           </p>
         </div>
 
@@ -454,7 +454,7 @@ function ServicesBento() {
             <div className="relative z-10 flex flex-col justify-end h-full p-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
               <span className="font-label text-[10px] tracking-widest-custom uppercase text-primary-container mb-5 flex items-center gap-3"><span className="w-8 h-px bg-primary-container"></span>02 &nbsp;/&nbsp; Aluminum</span>
               <h4 className="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-on-background mb-4 leading-[1.05]">Aluminum Body Repair</h4>
-              <p className="font-body text-sm text-on-surface-variant max-w-sm leading-relaxed opacity-90 group-hover:opacity-100 transition-opacity duration-500">Isolated, contaminant-free bay with dedicated aluminum tooling &mdash; the certified way to repair modern Cadillac, Ram and Jeep bodies.</p>
+              <p className="font-body text-sm text-on-surface-variant max-w-sm leading-relaxed opacity-90 group-hover:opacity-100 transition-opacity duration-500">Isolated, contaminant-free bay with dedicated aluminum tooling. The certified way to repair modern Cadillac, Ram and Jeep bodies.</p>
             </div>
           </div>
 
@@ -466,7 +466,7 @@ function ServicesBento() {
             <div className="relative z-10 flex flex-col justify-end h-full p-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
               <span className="font-label text-[10px] tracking-widest-custom uppercase text-primary-container mb-5 flex items-center gap-3"><span className="w-8 h-px bg-primary-container"></span>03 &nbsp;/&nbsp; Refinish</span>
               <h4 className="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-on-background mb-4 leading-[1.05]">Paint &amp; Refinishing</h4>
-              <p className="font-body text-sm text-on-surface-variant max-w-sm leading-relaxed opacity-90 group-hover:opacity-100 transition-opacity duration-500">Spectrophotometer-matched color, downdraft booths, multi-stage bake &mdash; an OEM finish, every panel.</p>
+              <p className="font-body text-sm text-on-surface-variant max-w-sm leading-relaxed opacity-90 group-hover:opacity-100 transition-opacity duration-500">Spectrophotometer-matched color, downdraft booths, multi-stage bake. An OEM finish, every panel.</p>
             </div>
           </div>
 
@@ -478,7 +478,7 @@ function ServicesBento() {
             <div className="relative z-10 flex flex-col justify-end h-full p-10 md:p-12 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
               <span className="font-label text-[10px] tracking-widest-custom uppercase text-primary-container mb-5 flex items-center gap-3"><span className="w-8 h-px bg-primary-container"></span>04 &nbsp;/&nbsp; Panels</span>
               <h4 className="font-headline text-3xl md:text-4xl font-bold uppercase tracking-tight text-on-background mb-4 max-w-md leading-[1.05]">Body &amp; Panel Replacement</h4>
-              <p className="font-body text-sm text-on-surface-variant max-w-md leading-relaxed opacity-90 group-hover:opacity-100 transition-opacity duration-500">OEM bumpers, fenders, hoods and quarters &mdash; fit, sealed and finished to factory drawings.</p>
+              <p className="font-body text-sm text-on-surface-variant max-w-md leading-relaxed opacity-90 group-hover:opacity-100 transition-opacity duration-500">OEM bumpers, fenders, hoods and quarters, fit, sealed and finished to factory drawings.</p>
             </div>
           </div>
 
@@ -502,7 +502,7 @@ function ServicesBento() {
             <div className="relative z-10 flex flex-col justify-end h-full p-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
               <span className="font-label text-[10px] tracking-widest-custom uppercase text-primary-container mb-5 flex items-center gap-3"><span className="w-8 h-px bg-primary-container"></span>06 &nbsp;/&nbsp; Rental</span>
               <h4 className="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-on-background mb-4 leading-[1.05]">On-Site Enterprise Rental</h4>
-              <p className="font-body text-sm text-on-surface-variant max-w-sm leading-relaxed opacity-90 group-hover:opacity-100 transition-opacity duration-500">Drop the keys, pick up a rental &mdash; Enterprise Rent-A-Car operates a counter on our property. Insurance direct-bill ready.</p>
+              <p className="font-body text-sm text-on-surface-variant max-w-sm leading-relaxed opacity-90 group-hover:opacity-100 transition-opacity duration-500">Drop the keys, pick up a rental. Enterprise Rent-A-Car operates a counter on our property. Insurance direct-bill ready.</p>
               <span className="mt-6 inline-flex items-center gap-2 font-label text-[10px] tracking-widest-custom uppercase text-on-background group-hover:text-primary-container transition-colors">Schedule a Drop-Off <span className="w-6 h-px bg-current"></span></span>
             </div>
           </a>
@@ -511,7 +511,7 @@ function ServicesBento() {
         <div className="mt-16 md:mt-20 pt-10 border-t border-outline-variant/30 reveal">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 mb-8 items-end">
             <h4 className="md:col-span-4 font-label text-xs tracking-widest-custom uppercase text-primary-container border-l-2 border-primary-container pl-4">Also Performed In-House</h4>
-            <p className="md:col-span-8 font-body text-sm text-on-surface-variant leading-relaxed">A complete catalog of supporting work &mdash; handled by the same technicians, under the same roof, to the same standard.</p>
+            <p className="md:col-span-8 font-body text-sm text-on-surface-variant leading-relaxed">A complete catalog of supporting work, handled by the same technicians, under the same roof, to the same standard.</p>
           </div>
           <div className="flex flex-wrap gap-x-3 gap-y-3">
             {[
@@ -541,13 +541,13 @@ function ServicesBento() {
 
 function FacilityTour() {
   const tiles = [
-    { src: IMG.shopOverview, label: 'Production Floor', caption: 'Multiple bays — structural and cosmetic work executed under one roof.' },
+    { src: IMG.shopOverview, label: 'Production Floor', caption: 'Multiple bays for structural and cosmetic work, executed under one roof.' },
     { src: IMG.paintMixRoom, label: 'Paint Mixing Lab', caption: 'In-house spectrophotometer color match with a full refinish toner library.' },
     { src: IMG.escaladeMasked, label: 'Aluminum Repair Bay', caption: 'Isolated, contamination-free room with dedicated aluminum tooling.' },
     { src: IMG.teamWarehouse, label: 'Parts Warehouse', caption: 'OEM inventory staged on-site so repairs never wait on a part.' },
-    { src: IMG.serviceDrive, label: 'Covered Service Drive', caption: 'Climate-protected drop-off and intake — your vehicle is sheltered from the moment it arrives.' },
+    { src: IMG.serviceDrive, label: 'Covered Service Drive', caption: 'Climate-protected drop-off and intake. Your vehicle is sheltered from the moment it arrives.' },
     { src: IMG.suvOnFrame, label: 'Frame Alignment Rack', caption: 'Laser-guided Car-O-Liner system measures and pulls frames back to factory tolerances.' },
-    { src: IMG.paintBench, label: 'Refinish Bench', caption: 'Multi-stage clear, environmental bake and detail prep — every panel inspected before delivery.' },
+    { src: IMG.paintBench, label: 'Refinish Bench', caption: 'Multi-stage clear, environmental bake and detail prep. Every panel inspected before delivery.' },
     { src: IMG.escaladeBumper, label: 'Panel Repair Bay', caption: 'OEM bumpers, fenders, hoods and quarters fit and sealed to factory drawings.' },
   ];
   const [active, setActive] = useState(0);
@@ -575,7 +575,7 @@ function FacilityTour() {
             </h3>
           </div>
           <p className="lg:col-span-5 font-body text-sm md:text-base text-ink-muted leading-relaxed pb-1 reveal reveal-delay-2">
-            A purpose-built facility for collision repair &mdash; covered service drives, climate-controlled prep bays, downdraft paint booths, a full in-house paint mixing lab, and a dedicated aluminum repair room. Every tool, every certification, on one property.
+            A purpose-built facility for collision repair, with covered service drives, climate-controlled prep bays, downdraft paint booths, a full in-house paint mixing lab, and a dedicated aluminum repair room. Every tool, every certification, on one property.
           </p>
         </div>
 
@@ -720,7 +720,7 @@ function Team() {
           </div>
           <div className="lg:col-span-5 reveal reveal-delay-2">
             <p className="font-body text-sm md:text-base text-ink-muted leading-relaxed mb-6">
-              Many of our technicians have been with the Williamson family for over a decade. Every team member &mdash; from the service advisors at the front counter to the body techs in the booth &mdash; is OEM-trained and continuously certified on the latest manufacturer procedures.
+              Many of our technicians have been with the Williamson family for over a decade. Every team member, from the service advisors at the front counter to the body techs in the booth, is OEM-trained and continuously certified on the latest manufacturer procedures.
             </p>
             <a href="#schedule" className="inline-flex items-center gap-3 font-headline text-sm font-bold uppercase tracking-widest-custom text-accent-deep hover:text-ink transition-colors">
               Meet us in person
@@ -1047,7 +1047,7 @@ function Footer() {
       {/* Bottom strip */}
       <div className="border-t border-paper-line">
         <div className="max-w-7xl mx-auto px-8 md:px-12 py-5 flex flex-col md:flex-row justify-between items-center gap-3">
-          <p className="font-body text-xs text-ink-muted">© 2024 Williamson Collision Center. All Rights Reserved.</p>
+          <p className="font-body text-xs text-ink-muted">© 2026 Williamson Collision Center. All Rights Reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="font-body text-xs text-ink-muted hover:text-accent-deep transition-colors">Privacy Policy</a>
             <a href="#" className="font-body text-xs text-ink-muted hover:text-accent-deep transition-colors">Terms of Service</a>
