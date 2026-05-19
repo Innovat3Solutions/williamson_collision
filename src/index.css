@@ -4,24 +4,37 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #131313;
-  --color-on-background: #e5e2e1;
-  --color-surface: #131313;
-  --color-on-surface: #e5e2e1;
-  --color-surface-container-lowest: #0e0e0e;
-  --color-surface-container-low: #1c1b1b;
-  --color-surface-container: #201f1f;
-  --color-surface-container-high: #2a2a2a;
-  --color-surface-container-highest: #353534;
-  --color-on-surface-variant: #c6c6c6;
-  --color-outline: #919191;
-  --color-outline-variant: #474747;
+  /* Dark-base anchor sections (hero, services bento, facility, team) */
+  --color-background: #17181b;
+  --color-on-background: #efece8;
+  --color-surface: #1c1d20;
+  --color-on-surface: #efece8;
+  --color-surface-container-lowest: #121316;
+  --color-surface-container-low: #1f2024;
+  --color-surface-container: #25272b;
+  --color-surface-container-high: #2c2e32;
+  --color-surface-container-highest: #35373c;
+  --color-on-surface-variant: #c9c6c0;
+  --color-outline: #8c8a85;
+  --color-outline-variant: #4d4d4d;
+
+  /* Brand accent — warm gold inspired by Cadillac wreath */
   --color-primary: #ffffff;
   --color-on-primary: #241a00;
-  --color-primary-container: #f8d056;
-  --color-on-primary-container: #000000;
+  --color-primary-container: #d6a02a;
+  --color-on-primary-container: #1a1300;
+  --color-accent-deep: #a87916;
   --color-secondary: #c6c6c6;
   --color-surface-bright: #3a3939;
+
+  /* Light "paper" palette for breathing-room sections */
+  --color-paper: #f6f2ea;
+  --color-paper-alt: #ece6da;
+  --color-paper-card: #ffffff;
+  --color-ink: #1b1d22;
+  --color-ink-muted: #5d5b56;
+  --color-ink-faint: #8c8a85;
+  --color-paper-line: #d8d2c5;
 
   --font-headline: "Manrope", sans-serif;
   --font-body: "Inter", sans-serif;
@@ -47,4 +60,70 @@
 /* Smooth transitions for images */
 .group:hover .group-hover\:scale-105 {
   transform: scale(1.05);
+}
+
+/* ---------- Motion system ---------- */
+@keyframes wc-fade-up {
+  from { opacity: 0; transform: translate3d(0, 28px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes wc-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes wc-ken-burns {
+  0%   { transform: scale(1) translate3d(0, 0, 0); }
+  100% { transform: scale(1.08) translate3d(-1%, -1%, 0); }
+}
+@keyframes wc-sheen {
+  0%   { transform: translateX(-120%) skewX(-15deg); opacity: 0; }
+  40%  { opacity: 0.6; }
+  100% { transform: translateX(220%) skewX(-15deg); opacity: 0; }
+}
+
+.anim-fade-up {
+  animation: wc-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.anim-fade-in {
+  animation: wc-fade-in 1.2s ease-out both;
+}
+.anim-ken-burns {
+  animation: wc-ken-burns 20s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Scroll-reveal — paired with IntersectionObserver */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-left  { transform: translate3d(-28px, 0, 0); }
+.reveal-right { transform: translate3d(28px, 0, 0); }
+.reveal-scale { transform: scale(0.96); }
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.40s; }
+.reveal-delay-6 { transition-delay: 0.48s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .anim-fade-up,
+  .anim-fade-in,
+  .anim-ken-burns {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
