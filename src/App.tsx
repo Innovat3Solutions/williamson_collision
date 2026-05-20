@@ -139,18 +139,18 @@ function Navbar() {
         <a
           className="shrink-0 inline-flex items-center gap-3 sm:gap-4 overflow-hidden h-14 sm:h-16 lg:h-20"
           href="#"
-          aria-label="Williamson Cadillac Collision Center home"
+          aria-label="Williamson Automotive Collision Center home"
         >
           <img
             src={LOGO.brand}
-            alt="Williamson Cadillac Collision Center"
+            alt="Williamson Automotive Collision Center"
             className="h-[5.25rem] sm:h-24 lg:h-[7.5rem] w-auto max-w-[40vw] object-contain object-left"
             loading="eager"
             decoding="async"
           />
           <span className={`hidden sm:flex flex-col leading-tight border-l ${dark ? 'border-paper/25' : 'border-ink/15'} pl-3 sm:pl-4`}>
             <span className={`font-label text-[9px] sm:text-[10px] tracking-widest-custom uppercase ${dark ? 'text-primary-container' : 'text-accent-deep'}`}>
-              Williamson Cadillac
+              Williamson Automotive
             </span>
             <span className={`font-headline text-sm sm:text-base lg:text-lg font-bold uppercase tracking-tight ${dark ? 'text-paper' : 'text-ink'}`}>
               Collision Center
@@ -217,14 +217,14 @@ function Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-12">
         <div className="max-w-3xl">
           <h2 className="font-label text-xs tracking-widest-custom uppercase text-primary-container mb-6 border-l-2 border-primary-container pl-4 anim-fade-up" style={{ animationDelay: '0.15s' }}>
-            The Body Shop of Williamson Cadillac &middot; South Miami
+            The Body Shop of Williamson Automotive &middot; South Miami
           </h2>
           <h1 className="font-headline text-5xl md:text-7xl font-extrabold uppercase tracking-tighter leading-[0.9] mb-8 anim-fade-up text-on-background" style={{ animationDelay: '0.3s' }}>
-            Williamson Cadillac<br/>
+            Williamson Automotive<br/>
             <span className="text-primary-container">Collision</span> <span className="text-on-surface-variant">Center.</span>
           </h1>
           <p className="font-body text-base text-on-surface-variant max-w-xl mb-10 anim-fade-up" style={{ animationDelay: '0.45s' }}>
-            The authorized, factory-certified body shop of Williamson Cadillac. OEM-trained technicians, genuine parts, and a fully tooled Car-O-Liner facility, serving every Cadillac, GMC, Buick, Chevrolet, Stellantis, Nissan, Infiniti, Hyundai, and Kia driver in Miami-Dade.
+            The authorized, factory-certified body shop of Williamson Automotive. OEM-trained technicians, genuine parts, and a fully tooled Car-O-Liner facility, serving every Cadillac, GMC, Buick, Chevrolet, Stellantis, Nissan, Infiniti, Hyundai, and Kia driver in Miami-Dade.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 anim-fade-up" style={{ animationDelay: '0.55s' }}>
             <a className="inline-flex justify-center items-center px-8 py-4 bg-primary-container text-on-primary-container font-headline font-bold uppercase tracking-widest-custom text-sm hover:bg-white transition-all duration-700 ease-in-out group" href="#schedule">
@@ -359,7 +359,7 @@ function BrandStrip() {
           </div>
           <div className="lg:col-span-5 reveal reveal-right">
             <p className="font-body text-sm md:text-base text-ink-muted leading-relaxed mb-6">
-              As the authorized body shop of <span className="font-headline font-bold uppercase tracking-tight text-ink">Williamson Cadillac</span>, we&apos;re factory-certified by every manufacturer in our showroom and beyond. We follow strict OEM repair procedures, use genuine parts, and operate the calibrated equipment required to keep your warranty, and your safety systems, intact.
+              As the authorized body shop of <span className="font-headline font-bold uppercase tracking-tight text-ink">Williamson Automotive</span>, we&apos;re factory-certified by every manufacturer in our showroom and beyond. We follow strict OEM repair procedures, use genuine parts, and operate the calibrated equipment required to keep your warranty, and your safety systems, intact.
             </p>
             <div className="grid grid-cols-3 gap-px bg-paper-line">
               {[
@@ -674,7 +674,7 @@ function Process() {
     <section data-tone="dark" className="py-24 bg-background relative">
       <div className="max-w-7xl mx-auto px-8 md:px-12">
         <div className="mb-16 reveal">
-          <h2 className="font-label text-xs tracking-widest-custom uppercase text-primary-container mb-4 border-l-2 border-primary-container pl-4">The Williamson Cadillac Standard</h2>
+          <h2 className="font-label text-xs tracking-widest-custom uppercase text-primary-container mb-4 border-l-2 border-primary-container pl-4">The Williamson Automotive Standard</h2>
           <h3 className="font-headline text-4xl md:text-5xl font-extrabold uppercase tracking-tighter text-on-background leading-tight">
             Factory-Certified <br/><span className="text-on-surface-variant">Repair Process</span>
           </h3>
@@ -867,7 +867,7 @@ function Location() {
       <div className="max-w-7xl mx-auto px-8 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="reveal reveal-left">
-            <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-ink mb-6">Williamson Cadillac Collision Center</h2>
+            <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-ink mb-6">Williamson Automotive Collision Center</h2>
             <p className="font-body text-sm text-ink-muted mb-8 max-w-md">
               Our state-of-the-art repair and restoration facility in South Miami is engineered to provide an unparalleled service experience.
             </p>
@@ -965,19 +965,19 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
           {/* Brand */}
           <div className="md:col-span-4">
-            <a href="#" aria-label="Williamson Cadillac Collision Center home" className="inline-flex items-center overflow-hidden h-32 md:h-40">
+            <a href="#" aria-label="Williamson Automotive Collision Center home" className="inline-flex items-center overflow-hidden h-32 md:h-40">
               <img
                 src={LOGO.brand}
-                alt="Williamson Cadillac Collision Center"
+                alt="Williamson Automotive Collision Center"
                 className="h-48 md:h-60 w-auto object-contain object-left"
                 loading="lazy"
               />
             </a>
             <div className="mt-4 font-label text-[10px] tracking-widest-custom uppercase text-accent-deep">
-              The Body Shop of Williamson Cadillac
+              The Body Shop of Williamson Automotive
             </div>
             <p className="mt-3 font-body text-sm text-ink-muted leading-relaxed max-w-xs">
-              Proudly serving Miami and the surrounding communities with the certified collision repair you expect from the Williamson Cadillac name.
+              Proudly serving Miami and the surrounding communities with the certified collision repair you expect from the Williamson Automotive name.
             </p>
             <div className="mt-6 flex gap-3">
               <a href="#" aria-label="Facebook" className="w-9 h-9 rounded-full border border-paper-line flex items-center justify-center text-ink-muted hover:text-accent-deep hover:border-accent-deep transition-colors">
@@ -1058,7 +1058,7 @@ function Footer() {
       {/* Bottom strip */}
       <div className="border-t border-paper-line">
         <div className="max-w-7xl mx-auto px-8 md:px-12 py-5 flex flex-col md:flex-row justify-between items-center gap-3">
-          <p className="font-body text-xs text-ink-muted">© 2026 Williamson Cadillac Collision Center. All Rights Reserved.</p>
+          <p className="font-body text-xs text-ink-muted">© 2026 Williamson Automotive Collision Center. All Rights Reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="font-body text-xs text-ink-muted hover:text-accent-deep transition-colors">Privacy Policy</a>
             <a href="#" className="font-body text-xs text-ink-muted hover:text-accent-deep transition-colors">Terms of Service</a>
