@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const IMG = {
-  heroBg: '/images/Williamson/hero-bg.jpg',
-  facadeFront: '/images/Williamson/IMG_0205.jpg',
+  heroBg: '/images/Williamson/Background-Hero_section.png',
+  facadeFront: '/images/Williamson/dji_fly_20230223_090534_69_1677161603236_aeb.jpg',
+  facadeAerial: '/images/Williamson/Overhead.jpg',
+  reception: '/images/Williamson/Reception 1b.png',
   serviceDrive: '/images/Williamson/IMG_0214.jpg',
   entrance: '/images/Williamson/IMG_0219.jpg',
   advisor: '/images/Williamson/IMG_0231.jpg',
@@ -10,7 +12,8 @@ const IMG = {
   lounge: '/images/Williamson/IMG_0244.jpg',
   suvOnFrame: '/images/Williamson/IMG_0248.jpg',
   frameRackWide: '/images/Williamson/IMG_0250.jpg',
-  shopOverview: '/images/Williamson/IMG_0254.jpg',
+  shopOverview: '/images/Williamson/Production Area 1b.png',
+  frameRackCarOLiner: '/images/Williamson/Production Area 2b.png',
   paintMixRoom: '/images/Williamson/IMG_0258.jpg',
   paintBench: '/images/Williamson/IMG_0260.jpg',
   escaladeBumper: '/images/Williamson/IMG_0261.jpg',
@@ -20,7 +23,7 @@ const IMG = {
 };
 
 const LOGO = {
-  brand: '/images/Williamson/williamson-collision-logo.png',
+  brand: '/images/Williamson/Williamson-Collision-Center-logo.png',
   brandLight: '/images/Williamson/Black-and-white-williamson-collision-logo.png',
   alfaRomeo: '/images/Williamson/alpha-romero-certified.png',
   cpn: '/images/Williamson/CPN-logo-blue.png',
@@ -137,25 +140,17 @@ function Navbar() {
 
       <div className="relative h-full flex justify-between items-center w-full px-4 sm:px-6 lg:px-8 max-w-none gap-4">
         <a
-          className="shrink-0 inline-flex items-center gap-3 sm:gap-4 overflow-hidden h-14 sm:h-16 lg:h-20"
+          className="shrink-0 inline-flex items-center overflow-hidden h-14 sm:h-16 lg:h-20"
           href="#"
-          aria-label="Williamson Automotive Collision Center home"
+          aria-label="Williamson Collision Center home"
         >
           <img
             src={LOGO.brand}
-            alt="Williamson Automotive Collision Center"
-            className="h-[5.25rem] sm:h-24 lg:h-[7.5rem] w-auto max-w-[40vw] object-contain object-left"
+            alt="Williamson Collision Center · GM Certified"
+            className="h-20 sm:h-24 lg:h-[7.5rem] w-auto max-w-[72vw] object-contain object-left"
             loading="eager"
             decoding="async"
           />
-          <span className={`hidden sm:flex flex-col leading-tight border-l ${dark ? 'border-paper/25' : 'border-ink/15'} pl-3 sm:pl-4`}>
-            <span className={`font-label text-[9px] sm:text-[10px] tracking-widest-custom uppercase ${dark ? 'text-primary-container' : 'text-accent-deep'}`}>
-              Williamson Automotive
-            </span>
-            <span className={`font-headline text-sm sm:text-base lg:text-lg font-bold uppercase tracking-tight ${dark ? 'text-paper' : 'text-ink'}`}>
-              Collision Center
-            </span>
-          </span>
         </a>
 
         <div className="hidden md:flex items-center gap-5 xl:gap-8">
@@ -549,12 +544,13 @@ function ServicesBento() {
 
 function FacilityTour() {
   const tiles = [
+    { src: IMG.reception, label: 'Reception & Lobby', caption: 'Where every repair begins. Sit with an advisor at the GM-Certified Williamson Collision Center front counter.' },
     { src: IMG.shopOverview, label: 'Production Floor', caption: 'Multiple bays for structural and cosmetic work, executed under one roof.' },
+    { src: IMG.frameRackCarOLiner, label: 'Frame Alignment Rack', caption: 'Car-O-Liner laser measuring system pulls frames back to exact factory tolerances.' },
     { src: IMG.paintMixRoom, label: 'Paint Mixing Lab', caption: 'In-house spectrophotometer color match with a full refinish toner library.' },
     { src: IMG.escaladeMasked, label: 'Aluminum Repair Bay', caption: 'Isolated, contamination-free room with dedicated aluminum tooling.' },
     { src: IMG.teamWarehouse, label: 'Parts Warehouse', caption: 'OEM inventory staged on-site so repairs never wait on a part.' },
     { src: IMG.serviceDrive, label: 'Covered Service Drive', caption: 'Climate-protected drop-off and intake. Your vehicle is sheltered from the moment it arrives.' },
-    { src: IMG.suvOnFrame, label: 'Frame Alignment Rack', caption: 'Laser-guided Car-O-Liner system measures and pulls frames back to factory tolerances.' },
     { src: IMG.paintBench, label: 'Refinish Bench', caption: 'Multi-stage clear, environmental bake and detail prep. Every panel inspected before delivery.' },
     { src: IMG.escaladeBumper, label: 'Panel Repair Bay', caption: 'OEM bumpers, fenders, hoods and quarters fit and sealed to factory drawings.' },
   ];
@@ -916,22 +912,30 @@ function Location() {
 
           <div className="reveal reveal-right reveal-delay-2 flex flex-col gap-4">
             <div className="relative h-[320px] overflow-hidden border border-paper-line">
-              <img alt="Williamson-Collision Center service drive entrance" src={IMG.facadeFront} className="w-full h-full object-cover" />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/45 to-transparent p-5">
+              <img alt="Williamson Collision Center building exterior with signage" src={IMG.facadeFront} className="w-full h-full object-cover" />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/55 to-transparent p-5">
                 <span className="font-label text-[10px] tracking-widest-custom uppercase text-white">Look for the Cadillac &middot; GMC &middot; Buick signage</span>
               </div>
             </div>
-            <div className="h-[260px] w-full border border-paper-line bg-paper-card p-2">
-              <iframe
-                title="Williamson-Collision Location Map"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                loading="lazy"
-                allowFullScreen
-                referrerPolicy="no-referrer-when-downgrade"
-                src="https://maps.google.com/maps?q=Williamson+Cadillac+19300+SW+108+Ave+Miami+FL+33157&z=15&output=embed"
-              ></iframe>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="relative h-[260px] overflow-hidden border border-paper-line">
+                <img alt="Aerial view of the Williamson Collision Center property in South Miami" src={IMG.facadeAerial} className="w-full h-full object-cover" />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/55 to-transparent p-4">
+                  <span className="font-label text-[10px] tracking-widest-custom uppercase text-white">Aerial &middot; Full-Property View</span>
+                </div>
+              </div>
+              <div className="h-[260px] w-full border border-paper-line bg-paper-card p-2">
+                <iframe
+                  title="Williamson Collision Center Location Map"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://maps.google.com/maps?q=Williamson+Cadillac+19300+SW+108+Ave+Miami+FL+33157&z=15&output=embed"
+                ></iframe>
+              </div>
             </div>
           </div>
         </div>
