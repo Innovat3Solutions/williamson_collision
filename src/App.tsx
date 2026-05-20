@@ -388,7 +388,7 @@ function BrandStrip() {
 
           <FamilyPanel
             eyebrow="Family 02"
-            title="Asian Manufacturers"
+            title="Imported Manufacturers"
             blurb="Recognized by Hyundai, certified by Kia, and part of the Nissan &amp; Infiniti Certified Repair Network."
             tiles={asian}
             cols="grid-cols-1 sm:grid-cols-3"
