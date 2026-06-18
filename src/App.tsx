@@ -1,5 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+// Estimates and appointments are handled on the shop's CARWISE profile.
+const CARWISE_URL =
+  'https://www.carwise.com/auto-body-shops/williamson-collision-center-miami-fl-33157/465414';
+
 const IMG = {
   heroBg: '/images/Williamson/Background-Hero_section.png',
   facadeFront: '/images/Williamson/dji_fly_20230223_090534_69_1677161603236_aeb.jpg',
@@ -20,6 +24,9 @@ const IMG = {
   escaladeMasked: '/images/Williamson/IMG_0265.jpg',
   technicianPhilip: '/images/Williamson/IMG_0269.jpg',
   teamWarehouse: '/images/Williamson/IMG_0274.jpg',
+  bodyTechStaff: '/images/Williamson/Body Tech Staff.png',
+  officeStaff: '/images/Williamson/Office Staff.jpg',
+  paintShopStaff: '/images/Williamson/Paint Shop Staff.png',
 };
 
 const LOGO = {
@@ -41,6 +48,10 @@ const LOGO = {
   chevrolet: '/images/Williamson/Chevrolet-logo.png',
   buick: '/images/Williamson/Buick-Logo.png',
   gmc: '/images/Williamson/gmc-logo.png',
+  // Technician & shop certifications — drop these files into public/images/Williamson/
+  icarGold: '/images/Williamson/I-CAR-Gold-Class.png',
+  ase: '/images/Williamson/ASE-Certified.png',
+  aati: '/images/Williamson/AATI-Certified.png',
 };
 
 function useScrollReveal() {
@@ -147,7 +158,14 @@ function Navbar() {
           <img
             src={LOGO.brand}
             alt="Williamson Collision Center · GM Certified"
-            className="h-20 sm:h-24 lg:h-[7.5rem] w-auto max-w-[72vw] object-contain object-left"
+            className="h-20 sm:h-24 lg:h-[7.5rem] w-auto max-w-[72vw] object-contain object-left transition-[filter] duration-500"
+            style={{
+              // Over dark sections the logo's black "COLLISION CENTER" text and navy shield
+              // blend in — tight white shadows draw a legibility outline around the artwork.
+              filter: dark
+                ? 'drop-shadow(0 0 1px rgba(255,255,255,0.65)) drop-shadow(0 1px 4px rgba(255,255,255,0.3))'
+                : 'none',
+            }}
             loading="eager"
             decoding="async"
           />
@@ -178,7 +196,9 @@ function Navbar() {
                 ? 'bg-primary-container text-on-primary-container hover:bg-white'
                 : 'bg-ink text-paper hover:bg-accent-deep'
             }`}
-            href="#schedule"
+            href={CARWISE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             SCHEDULE REPAIR
           </a>
@@ -198,7 +218,7 @@ function Hero() {
       <div className="absolute inset-0 z-0">
         <img
           alt="Williamson-Collision technicians repairing a Cadillac SUV inside the Miami facility"
-          className="w-full h-full object-cover object-center anim-fade-in anim-ken-burns"
+          className="w-full h-full object-cover object-center anim-fade-in"
           src={IMG.heroBg}
           loading="eager"
           decoding="sync"
@@ -222,11 +242,11 @@ function Hero() {
             The authorized, factory-certified body shop of Williamson Automotive. OEM-trained technicians, genuine parts, and a fully tooled Car-O-Liner facility, serving every Cadillac, GMC, Buick, Chevrolet, Stellantis, Nissan, Infiniti, Hyundai, and Kia driver in Miami-Dade.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 anim-fade-up" style={{ animationDelay: '0.55s' }}>
-            <a className="inline-flex justify-center items-center px-8 py-4 bg-primary-container text-on-primary-container font-headline font-bold uppercase tracking-widest-custom text-sm hover:bg-white transition-all duration-700 ease-in-out group" href="#schedule">
+            <a className="inline-flex justify-center items-center px-8 py-4 bg-primary-container text-on-primary-container font-headline font-bold uppercase tracking-widest-custom text-sm hover:bg-white transition-all duration-700 ease-in-out group" href={CARWISE_URL} target="_blank" rel="noopener noreferrer">
               Get an Estimate
               <span className="material-symbols-outlined ml-3 text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </a>
-            <a className="inline-flex justify-center items-center px-8 py-4 bg-transparent border border-on-surface-variant/60 text-on-background font-headline font-bold uppercase tracking-widest-custom text-sm hover:border-primary-container hover:text-primary-container transition-all duration-700 ease-in-out" href="#services">
+            <a className="inline-flex justify-center items-center px-8 py-4 bg-transparent border border-on-surface-variant/60 text-on-background font-headline font-bold uppercase tracking-widest-custom text-sm hover:border-primary-container hover:text-primary-container transition-all duration-700 ease-in-out" href={CARWISE_URL} target="_blank" rel="noopener noreferrer">
               Schedule Appointment
             </a>
           </div>
@@ -354,7 +374,14 @@ function BrandStrip() {
           </div>
           <div className="lg:col-span-5 reveal reveal-right">
             <p className="font-body text-sm md:text-base text-ink-muted leading-relaxed mb-6">
-              As the authorized body shop of <span className="font-headline font-bold uppercase tracking-tight text-ink">Williamson Automotive</span>, we&apos;re factory-certified by every manufacturer in our showroom and beyond. We follow strict OEM repair procedures, use genuine parts, and operate the calibrated equipment required to keep your warranty, and your safety systems, intact.
+              As the authorized Collision Repair Center for <span className="font-headline font-bold uppercase tracking-tight text-ink">Williamson Automotive</span>, we&apos;re factory-certified by every manufacturer in our showroom&mdash;and many more. Our team follows strict OEM repair standards, uses genuine parts, and relies on advanced, properly calibrated equipment to ensure your vehicle is restored safely and your warranty remains protected.
+            </p>
+            <p className="font-headline text-xs md:text-sm font-bold uppercase tracking-tight text-ink mb-6 flex flex-wrap items-center gap-x-2 gap-y-1">
+              <span>15+ Brands</span>
+              <span className="text-accent-deep">&ndash;</span>
+              <span>Certified Aluminum Repair</span>
+              <span className="text-accent-deep">&ndash;</span>
+              <span>I-Car Trained &amp; Certified Technicians</span>
             </p>
             <div className="grid grid-cols-3 gap-px bg-paper-line">
               {[
@@ -374,7 +401,15 @@ function BrandStrip() {
         {/* FAMILY PANELS */}
         <div className="grid grid-cols-1 gap-6">
           <FamilyPanel
-            eyebrow="Family 01"
+            eyebrow="General Motors"
+            title="Part of the GM Collision Repair Network (GMCRN)"
+            blurb="The Williamson family&apos;s home brands plus the aluminum certification required for modern luxury and full-size trucks. This designation allows us to order aluminum and structural parts and components that are not sold to non-Certified Repair Centers."
+            tiles={gm}
+            cols="grid-cols-2 sm:grid-cols-3 md:grid-cols-5"
+          />
+
+          <FamilyPanel
+            eyebrow="Stellantis Group"
             title="Stellantis · FCA US LLC"
             blurb="Full FCA US LLC Certified Collision Repair Center status. Mopar parts, official tooling, and certified procedures across every Stellantis brand."
             tiles={stellantis}
@@ -382,24 +417,29 @@ function BrandStrip() {
           />
 
           <FamilyPanel
-            eyebrow="Family 02"
+            eyebrow="Asian Imports"
             title="Imported Manufacturers"
             blurb="Recognized by Hyundai, certified by Kia, and part of the Nissan &amp; Infiniti Certified Repair Network."
             tiles={asian}
             cols="grid-cols-1 sm:grid-cols-3"
           />
+        </div>
 
-          <FamilyPanel
-            eyebrow="Family 03"
-            title="General Motors  ·  Aluminum"
-            blurb="The Williamson family&apos;s home brands plus the aluminum certification required for modern luxury and full-size trucks."
-            tiles={gm}
-            cols="grid-cols-2 sm:grid-cols-3 md:grid-cols-5"
-          />
+        {/* TECHNICIAN & SHOP CERTIFICATIONS */}
+        <div className="mt-6 flex flex-col md:flex-row md:items-center gap-6 md:gap-10 bg-paper-card border border-paper-line px-6 md:px-8 py-6 reveal">
+          <div className="md:max-w-[14rem]">
+            <div className="font-label text-[10px] tracking-widest-custom uppercase text-accent-deep mb-2">Shop &amp; Technician</div>
+            <div className="font-headline text-sm md:text-base font-bold tracking-tight uppercase text-ink leading-tight">I-Car Gold Class &middot; ASE &amp; AATI Certified Technicians</div>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-5 md:ml-auto">
+            <img src={LOGO.icarGold} alt="I-CAR Gold Class certified collision repair shop" className="h-12 md:h-14 w-auto object-contain" loading="lazy" />
+            <img src={LOGO.ase} alt="ASE Certified Technicians" className="h-12 md:h-14 w-auto object-contain" loading="lazy" />
+            <img src={LOGO.aati} alt="AATI Certified Technicians" className="h-12 md:h-14 w-auto object-contain" loading="lazy" />
+          </div>
         </div>
 
         {/* MEMBERSHIP STRIP */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-6 bg-paper-card border border-paper-line px-6 md:px-8 py-5 reveal">
+        <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-6 bg-paper-card border border-paper-line px-6 md:px-8 py-5 reveal">
           <div className="flex items-center gap-5">
             <span className="material-symbols-outlined text-accent-deep">hub</span>
             <div>
@@ -497,7 +537,7 @@ function ServicesBento() {
             </div>
           </div>
 
-          <a href="#schedule" className="group relative overflow-hidden bg-surface-container-lowest border border-outline-variant/30 min-h-[400px] hover:border-primary-container/60 transition-all duration-500 shadow-2xl shadow-black/40 reveal reveal-delay-4">
+          <a href={CARWISE_URL} target="_blank" rel="noopener noreferrer" className="group relative overflow-hidden bg-surface-container-lowest border border-outline-variant/30 min-h-[400px] hover:border-primary-container/60 transition-all duration-500 shadow-2xl shadow-black/40 reveal reveal-delay-4">
             <div className="absolute inset-0 z-0">
               <img alt="On-site Enterprise Rent-A-Car desk at the Williamson-Collision Center" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" src={IMG.entrance} />
               <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent"></div>
@@ -706,10 +746,16 @@ function Process() {
 }
 
 function Team() {
-  const members = [
-    { num: '01', src: IMG.advisor, alt: 'Service advisor at the Williamson-Collision Cadillac front counter', name: 'Service Advisors', role: 'Insurance & Estimates' },
-    { num: '02', src: IMG.technicianPhilip, alt: 'Master body technician Philip at the Williamson-Collision aluminum repair bay', name: 'Master Body Techs', role: 'Aluminum & Structural' },
-    { num: '03', src: IMG.teamWarehouse, alt: 'Williamson-Collision Center parts and warehouse team', name: 'Parts & Logistics', role: 'OEM Inventory On-Site' },
+  const paintTeam = {
+    num: '01',
+    src: IMG.paintShopStaff,
+    alt: 'Williamson Collision Center paint and refinish team',
+    name: 'Paint & Refinish',
+    role: 'Color · Finish · Detail',
+  };
+  const sideTeam = [
+    { num: '02', src: IMG.bodyTechStaff, alt: 'Williamson Collision Center body technician team in the production shop', name: 'Body Technicians', role: 'Aluminum & Structural' },
+    { num: '03', src: IMG.officeStaff, alt: 'Williamson Collision Center office and service advisor staff at the front desk', name: 'Office & Advisors', role: 'Insurance & Estimates' },
   ];
 
   return (
@@ -726,32 +772,50 @@ function Team() {
             <p className="font-body text-sm md:text-base text-ink-muted leading-relaxed mb-6">
               Many of our technicians have been with the Williamson family for over a decade. Every team member, from the service advisors at the front counter to the body techs in the booth, is OEM-trained and continuously certified on the latest manufacturer procedures.
             </p>
-            <a href="#schedule" className="inline-flex items-center gap-3 font-headline text-sm font-bold uppercase tracking-widest-custom text-accent-deep hover:text-ink transition-colors">
+            <a href={CARWISE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 font-headline text-sm font-bold uppercase tracking-widest-custom text-accent-deep hover:text-ink transition-colors">
               Meet us in person
               <span className="material-symbols-outlined text-base">arrow_forward</span>
             </a>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-          {members.map((m, i) => (
-            <div
-              key={m.num}
-              className="group relative aspect-[4/5] overflow-hidden border border-paper-line shadow-2xl shadow-black/15 reveal"
-              style={{ transitionDelay: `${i * 0.08}s` }}
-            >
-              <img alt={m.alt} src={m.src} className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" />
-              {/* Caption scrim stays dark so white text remains readable over varied photos */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"></div>
-              <div className="absolute inset-x-0 bottom-0 p-6 md:p-7">
-                <span className="font-label text-[10px] tracking-widest-custom uppercase text-primary-container flex items-center gap-3 mb-4">
-                  <span className="w-6 h-px bg-primary-container"></span>{m.num}
-                </span>
-                <h5 className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight text-white leading-[1.05] mb-2">{m.name}</h5>
-                <p className="font-label text-[10px] tracking-widest-custom uppercase text-white/75">{m.role}</p>
-              </div>
+        {/* Mixed-orientation editorial layout: the tall paint-shop group photo anchors the
+            left as a full-height portrait, with the two landscape group photos stacked beside it. */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+          {/* Tall portrait — Paint & Refinish team */}
+          <div className="group relative md:col-span-5 overflow-hidden border border-paper-line shadow-2xl shadow-black/15 reveal aspect-[4/5] md:aspect-auto md:min-h-[640px]">
+            <img alt={paintTeam.alt} src={paintTeam.src} className="absolute inset-0 w-full h-full object-cover object-center opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" />
+            {/* Caption scrim stays dark so white text remains readable over varied photos */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"></div>
+            <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+              <span className="font-label text-[10px] tracking-widest-custom uppercase text-primary-container flex items-center gap-3 mb-4">
+                <span className="w-6 h-px bg-primary-container"></span>{paintTeam.num}
+              </span>
+              <h5 className="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-white leading-[1.05] mb-2">{paintTeam.name}</h5>
+              <p className="font-label text-[10px] tracking-widest-custom uppercase text-white/75">{paintTeam.role}</p>
             </div>
-          ))}
+          </div>
+
+          {/* Two stacked landscape group photos */}
+          <div className="md:col-span-7 grid grid-rows-1 md:grid-rows-2 gap-4 md:gap-6">
+            {sideTeam.map((m, i) => (
+              <div
+                key={m.num}
+                className="group relative overflow-hidden border border-paper-line shadow-2xl shadow-black/15 reveal aspect-[16/10] md:aspect-auto"
+                style={{ transitionDelay: `${(i + 1) * 0.08}s` }}
+              >
+                <img alt={m.alt} src={m.src} className="absolute inset-0 w-full h-full object-cover object-center opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"></div>
+                <div className="absolute inset-x-0 bottom-0 p-6 md:p-7">
+                  <span className="font-label text-[10px] tracking-widest-custom uppercase text-primary-container flex items-center gap-3 mb-4">
+                    <span className="w-6 h-px bg-primary-container"></span>{m.num}
+                  </span>
+                  <h5 className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight text-white leading-[1.05] mb-2">{m.name}</h5>
+                  <p className="font-label text-[10px] tracking-widest-custom uppercase text-white/75">{m.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -830,7 +894,9 @@ function WeAreHere() {
             </a>
 
             <a
-              href="#location"
+              href={CARWISE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group flex flex-col justify-between gap-8 p-6 md:p-7 border border-outline-variant/30 hover:border-primary-container transition-colors duration-500 min-h-[150px]"
             >
               <div className="flex items-start justify-between gap-4">
@@ -841,7 +907,9 @@ function WeAreHere() {
             </a>
 
             <a
-              href="#schedule"
+              href={CARWISE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group flex flex-col justify-between gap-8 p-6 md:p-7 bg-primary-container text-on-primary-container hover:bg-white transition-colors duration-500 min-h-[150px]"
             >
               <div className="flex items-start justify-between gap-4">
