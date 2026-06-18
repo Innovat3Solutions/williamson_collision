@@ -18,7 +18,7 @@
   --color-outline: #8c8a85;
   --color-outline-variant: #4d4d4d;
 
-  /* Brand accent — warm gold inspired by Cadillac wreath */
+  /* Brand accent: warm gold inspired by Cadillac wreath */
   --color-primary: #ffffff;
   --color-on-primary: #241a00;
   --color-primary-container: #d6a02a;
@@ -92,7 +92,7 @@
   will-change: transform;
 }
 
-/* Scroll-reveal — paired with IntersectionObserver */
+/* Scroll-reveal, paired with IntersectionObserver */
 .reveal {
   opacity: 0;
   transform: translate3d(0, 28px, 0);

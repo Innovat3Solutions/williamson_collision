@@ -50,7 +50,7 @@ const LOGO = {
   chevrolet: '/images/Williamson/Chevrolet-logo.png',
   buick: '/images/Williamson/Buick-Logo.png',
   gmc: '/images/Williamson/gmc-logo.png',
-  // Technician & shop certifications — drop these files into public/images/Williamson/
+  // Technician & shop certifications: drop these files into public/images/Williamson/
   icarGold: '/images/Williamson/I-CAR-Gold-Class.png',
   ase: '/images/Williamson/ASE-Certified.png',
   aati: '/images/Williamson/AATI-Certified.png',
@@ -91,7 +91,7 @@ function Navbar() {
   const linkColor = 'text-paper hover:text-primary-container';
 
   return (
-    // Anchored to the top of the page (not sticky) — it scrolls away with the hero.
+    // Anchored to the top of the page (not sticky). It scrolls away with the hero.
     // Scroll back to the top to reach the menu again.
     <nav
       className="absolute top-0 inset-x-0 z-50"
@@ -149,7 +149,7 @@ function Navbar() {
 function Hero() {
   return (
     <section data-tone="dark" className="relative w-full h-[860px] min-h-[640px] flex items-center overflow-hidden bg-background">
-      {/* Full-bleed hero image — covers the entire section */}
+      {/* Full-bleed hero image covers the entire section */}
       <div className="absolute inset-0 z-0">
         <img
           alt="Williamson-Collision technicians repairing a Cadillac SUV inside the Miami facility"
@@ -309,7 +309,7 @@ function BrandStrip() {
           </div>
           <div className="lg:col-span-5 reveal reveal-right">
             <p className="font-body text-sm md:text-base text-ink-muted leading-relaxed mb-6">
-              As the authorized Collision Repair Center for <span className="font-headline font-bold uppercase tracking-tight text-ink">Williamson Automotive</span>, we&apos;re factory-certified by every manufacturer in our showroom&mdash;and many more. Our team follows strict OEM repair standards, uses genuine parts, and relies on advanced, properly calibrated equipment to ensure your vehicle is restored safely and your warranty remains protected.
+              As the authorized Collision Repair Center for <span className="font-headline font-bold uppercase tracking-tight text-ink">Williamson Automotive</span>, we&apos;re factory-certified by every manufacturer in our showroom, and many more. Our team follows strict OEM repair standards, uses genuine parts, and relies on advanced, properly calibrated equipment to ensure your vehicle is restored safely and your warranty remains protected.
             </p>
             <p className="font-headline text-xs md:text-sm font-bold uppercase tracking-tight text-ink mb-6 flex flex-wrap items-center gap-x-2 gap-y-1">
               <span>15+ Brands</span>
@@ -579,7 +579,7 @@ function FacilityTour() {
           </div>
         </div>
 
-        {/* Thumbnail carousel — 4 visible per page, horizontal scroll for the rest */}
+        {/* Thumbnail carousel: 4 visible per page, horizontal scroll for the rest */}
         <div className="mt-4 md:mt-5 relative">
           <div
             ref={scrollerRef}
@@ -634,6 +634,89 @@ function FacilityTour() {
               </button>
             </>
           )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WaterbornePaint() {
+  const advantages = [
+    {
+      num: '01',
+      icon: 'palette',
+      title: 'Color Accuracy',
+      desc: 'Automakers build cars with waterborne basecoats, so a matching refinish system (the Sherwin-Williams Ultra 9K System) reproduces metallic flake orientation and factory color with flawless accuracy.',
+    },
+    {
+      num: '02',
+      icon: 'eco',
+      title: 'Environmental & Safety Compliance',
+      desc: 'Waterborne technology slashes toxic VOC emissions by up to 90% versus traditional solvent systems, clearing EPA VOC regulations and OSHA spray-finishing safety benchmarks with room to spare.',
+    },
+    {
+      num: '03',
+      icon: 'shield',
+      title: 'Efficiency & Durability',
+      desc: 'Higher solids content builds full opacity in fewer coats, yielding a thinner, more flexible, chip-resistant film that withstands extreme weather variations.',
+    },
+    {
+      num: '04',
+      icon: 'health_and_safety',
+      title: 'Workplace Health',
+      desc: 'Lower toxicity and flammability reduce painters’ chronic-exposure risk and shop fire hazards, and can help lower insurance premiums.',
+    },
+  ];
+
+  return (
+    <section data-tone="dark" className="py-32 bg-background relative overflow-hidden">
+      <div className="absolute -top-24 right-0 w-[680px] h-[680px] bg-primary-container/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-8 md:px-12 relative z-10">
+        {/* HEADER */}
+        <div className="mb-14 md:mb-16 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-end">
+          <div className="md:col-span-7 reveal">
+            <h2 className="font-label text-xs tracking-widest-custom uppercase text-primary-container mb-5 border-l-2 border-primary-container pl-4">Refinish Technology</h2>
+            <h3 className="font-headline text-4xl md:text-6xl font-extrabold uppercase tracking-tighter text-on-background leading-[0.95]">
+              Waterborne Paint.<br/><span className="text-on-surface-variant">Factory Finish.</span>
+            </h3>
+          </div>
+          <p className="md:col-span-5 font-body text-sm md:text-base text-on-surface-variant max-w-md leading-relaxed pb-1 reveal reveal-delay-2">
+            The world&apos;s leading automakers spray water-based basecoats on their factory assembly lines. Refinishing with the same technology is how we reproduce a true OEM finish: superior color match, higher durability, and dramatically lower emissions, in full regulatory compliance.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Feature image with the headline 90% VOC stat */}
+          <div className="lg:col-span-5 group relative overflow-hidden border border-outline-variant/30 shadow-2xl shadow-black/40 min-h-[360px] lg:min-h-0 reveal">
+            <img alt="In-house paint mixing room with the Sherwin-Williams Ultra 9K waterborne toner library" src={IMG.paintMixRoom} className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/35 to-transparent"></div>
+            <div className="absolute inset-x-0 bottom-0 p-8 md:p-10">
+              <div className="font-headline text-6xl md:text-7xl font-extrabold tracking-tighter text-primary-container leading-none">90%</div>
+              <div className="mt-3 font-label text-[10px] tracking-widest-custom uppercase text-on-surface-variant flex items-center gap-3">
+                <span className="w-8 h-px bg-primary-container"></span>Lower VOC Emissions
+              </div>
+              <div className="mt-5 font-headline text-sm font-bold uppercase tracking-tight text-on-background">Sherwin-Williams Ultra 9K System</div>
+            </div>
+          </div>
+
+          {/* Advantage cards */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+            {advantages.map((a, i) => (
+              <div
+                key={a.num}
+                className="group relative bg-surface-container-lowest border border-outline-variant/30 p-7 md:p-8 hover:border-primary-container/50 transition-colors duration-500 reveal"
+                style={{ transitionDelay: `${i * 0.08}s` }}
+              >
+                <div className="flex items-center justify-between mb-5">
+                  <span className="material-symbols-outlined text-primary-container text-[28px]">{a.icon}</span>
+                  <span className="font-label text-[10px] tracking-widest-custom uppercase text-outline-variant">{a.num}</span>
+                </div>
+                <h4 className="font-headline text-lg md:text-xl font-bold uppercase tracking-tight text-on-background mb-3 leading-[1.1]">{a.title}</h4>
+                <p className="font-body text-xs md:text-sm text-on-surface-variant leading-relaxed">{a.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -717,7 +800,7 @@ function Team() {
         {/* Mixed-orientation editorial layout: the tall paint-shop group photo anchors the
             left as a full-height portrait, with the two landscape group photos stacked beside it. */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
-          {/* Tall portrait — Paint & Refinish team */}
+          {/* Tall portrait: Paint & Refinish team */}
           <div className="group relative md:col-span-5 overflow-hidden border border-paper-line shadow-2xl shadow-black/15 reveal aspect-[4/5] md:aspect-auto md:min-h-[640px]">
             <img alt={paintTeam.alt} src={paintTeam.src} className="absolute inset-0 w-full h-full object-cover object-center opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" />
             {/* Caption scrim stays dark so white text remains readable over varied photos */}
@@ -794,7 +877,7 @@ function WeAreHere() {
   return (
     <section data-tone="dark" className="relative w-full bg-background overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[260px]">
-        {/* Vehicle image — fades into the dark from the right */}
+        {/* Vehicle image fades into the dark from the right */}
         <div className="relative lg:col-span-5 h-[200px] lg:h-auto">
           <img
             src={IMG.frameRackWide}
@@ -1038,7 +1121,7 @@ function Footer() {
               <li className="flex items-start gap-3">
                 <span className="material-symbols-outlined text-[20px] text-accent-deep shrink-0 mt-px">place</span>
                 <span className="font-body text-sm text-ink-muted leading-relaxed">
-                  19300 S Dixie Hwy<br/>Miami, FL 33157
+                  19300 SW 108 Ave<br/>Miami, FL 33157
                 </span>
               </li>
               <li className="flex items-start gap-3">
@@ -1086,6 +1169,7 @@ export default function App() {
         <BrandStrip />
         <ServicesBento />
         <FacilityTour />
+        <WaterbornePaint />
         <Process />
         <Team />
         <InsurancePartners />
