@@ -32,6 +32,8 @@ const IMG = {
 const LOGO = {
   brand: '/images/Williamson/Williamson-Collision-Center-logo.png',
   brandLight: '/images/Williamson/Black-and-white-williamson-collision-logo.png',
+  brandWhite: '/images/Williamson/Collision Logo White Letters.png',
+  brandBlack: '/images/Williamson/Collision Logo Black Letters.png',
   alfaRomeo: '/images/Williamson/alpha-romero-certified.png',
   cpn: '/images/Williamson/CPN-logo-blue.png',
   cpnStacked: '/images/Williamson/CPN-logo-Stacked.png',
@@ -83,72 +85,18 @@ function useScrollReveal() {
 
 const NAV_HEIGHT = 90;
 
-function useNavTone(): 'light' | 'dark' {
-  const [tone, setTone] = useState<'light' | 'dark'>('dark');
-
-  useEffect(() => {
-    let observer: IntersectionObserver | null = null;
-
-    const setup = () => {
-      observer?.disconnect();
-      // 1px-thin observation strip just below the navbar — whichever section crosses that line wins.
-      const bottomMargin = -(window.innerHeight - NAV_HEIGHT - 2);
-      observer = new IntersectionObserver(
-        (entries) => {
-          for (const e of entries) {
-            if (e.isIntersecting) {
-              const t = (e.target as HTMLElement).dataset.tone;
-              if (t === 'light' || t === 'dark') setTone(t);
-            }
-          }
-        },
-        {
-          rootMargin: `-${NAV_HEIGHT}px 0px ${bottomMargin}px 0px`,
-          threshold: 0,
-        }
-      );
-      document
-        .querySelectorAll<HTMLElement>('[data-tone]')
-        .forEach((s) => observer!.observe(s));
-    };
-
-    setup();
-    const onResize = () => setup();
-    window.addEventListener('resize', onResize);
-    return () => {
-      window.removeEventListener('resize', onResize);
-      observer?.disconnect();
-    };
-  }, []);
-
-  return tone;
-}
-
 function Navbar() {
-  const tone = useNavTone();
-  const dark = tone === 'dark';
-
   const linkBase =
     'font-headline font-bold tracking-tighter uppercase px-3 py-2 cursor-pointer text-sm transition-colors duration-300';
-  const linkColor = dark
-    ? 'text-paper hover:text-primary-container'
-    : 'text-ink hover:text-accent-deep';
+  const linkColor = 'text-paper hover:text-primary-container';
 
   return (
+    // Anchored to the top of the page (not sticky) — it scrolls away with the hero.
+    // Scroll back to the top to reach the menu again.
     <nav
-      className="fixed top-0 inset-x-0 z-50 transition-colors duration-500"
+      className="absolute top-0 inset-x-0 z-50"
       style={{ height: NAV_HEIGHT }}
     >
-      {/* Soft fade across the entire navbar — gives the dark logo a white wash on dark sections without competing with the nav links */}
-      <div
-        aria-hidden="true"
-        className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${
-          dark
-            ? 'bg-gradient-to-b from-white/35 via-white/15 to-transparent'
-            : 'bg-gradient-to-b from-white/70 via-white/30 to-transparent'
-        }`}
-      ></div>
-
       <div className="relative h-full flex justify-between items-center w-full px-4 sm:px-6 lg:px-8 max-w-none gap-4">
         <a
           className="shrink-0 inline-flex items-center overflow-hidden h-14 sm:h-16 lg:h-20"
@@ -156,16 +104,9 @@ function Navbar() {
           aria-label="Williamson Collision Center home"
         >
           <img
-            src={LOGO.brand}
+            src={LOGO.brandWhite}
             alt="Williamson Collision Center · GM Certified"
-            className="h-20 sm:h-24 lg:h-[7.5rem] w-auto max-w-[72vw] object-contain object-left transition-[filter] duration-500"
-            style={{
-              // Over dark sections the logo's black "COLLISION CENTER" text and navy shield
-              // blend in — tight white shadows draw a legibility outline around the artwork.
-              filter: dark
-                ? 'drop-shadow(0 0 1px rgba(255,255,255,0.65)) drop-shadow(0 1px 4px rgba(255,255,255,0.3))'
-                : 'none',
-            }}
+            className="h-20 sm:h-24 lg:h-[7.5rem] w-auto max-w-[72vw] object-contain object-left"
             loading="eager"
             decoding="async"
           />
@@ -183,26 +124,20 @@ function Navbar() {
           <a
             aria-label="Call Williamson-Collision"
             href="tel:+13052388801"
-            className={`hidden lg:inline-flex items-center gap-2 transition-colors font-label text-xs tracking-widest-custom uppercase ${
-              dark ? 'text-paper/80 hover:text-primary-container' : 'text-ink-muted hover:text-accent-deep'
-            }`}
+            className="hidden lg:inline-flex items-center gap-2 transition-colors font-label text-xs tracking-widest-custom uppercase text-paper/80 hover:text-primary-container"
           >
             <span className="material-symbols-outlined text-base">call</span>
             305-238-8801
           </a>
           <a
-            className={`hidden lg:inline-flex font-headline font-bold uppercase tracking-tighter px-6 py-3 transition-all duration-500 ease-in-out cursor-pointer active:opacity-80 ${
-              dark
-                ? 'bg-primary-container text-on-primary-container hover:bg-white'
-                : 'bg-ink text-paper hover:bg-accent-deep'
-            }`}
+            className="hidden lg:inline-flex font-headline font-bold uppercase tracking-tighter px-6 py-3 transition-all duration-500 ease-in-out cursor-pointer active:opacity-80 bg-primary-container text-on-primary-container hover:bg-white"
             href={CARWISE_URL}
             target="_blank"
             rel="noopener noreferrer"
           >
             SCHEDULE REPAIR
           </a>
-          <button className={`md:hidden ${dark ? 'text-paper' : 'text-ink'}`}>
+          <button className="md:hidden text-paper">
             <span className="material-symbols-outlined">menu</span>
           </button>
         </div>
@@ -1039,7 +974,7 @@ function Footer() {
           <div className="md:col-span-4">
             <a href="#" aria-label="Williamson Automotive Collision Center home" className="inline-flex items-center overflow-hidden h-32 md:h-40">
               <img
-                src={LOGO.brand}
+                src={LOGO.brandBlack}
                 alt="Williamson Automotive Collision Center"
                 className="h-48 md:h-60 w-auto object-contain object-left"
                 loading="lazy"
