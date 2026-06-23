@@ -841,8 +841,17 @@ function Team() {
 }
 
 function InsurancePartners() {
-  const partners = [
-    'STAR Casualty (Preferred Repair Facility)',
+  const carriers = [
+    'State Farm Select Service®',
+    'USAA STARS',
+    'Travelers',
+    'STAR Casualty',
+    'United Automotive',
+    'Direct General',
+    'Hanover',
+    'Liberty Mutual',
+  ];
+  const logistics = [
     'Direct Insurance Billing',
     'On-Site Enterprise Rent-A-Car',
     'Loss-of-Use Coordination',
@@ -852,20 +861,34 @@ function InsurancePartners() {
   return (
     <section data-tone="dark" className="py-20 bg-background border-t border-outline-variant/20">
       <div className="max-w-7xl mx-auto px-8 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
           <div className="reveal reveal-left">
             <h2 className="font-label text-xs tracking-widest-custom uppercase text-primary-container mb-4 border-l-2 border-primary-container pl-4">Insurance &amp; Logistics</h2>
             <h3 className="font-headline text-2xl font-bold uppercase tracking-tight text-on-background leading-tight">
               We handle the paperwork. <span className="text-on-surface-variant">You drive away.</span>
             </h3>
           </div>
-          <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 reveal reveal-right">
-            {partners.map((p) => (
-              <div key={p} className="flex items-start gap-3 border-l-2 border-outline-variant/40 pl-4 py-2 hover:border-primary-container transition-colors">
-                <span className="material-symbols-outlined text-primary-container text-base mt-0.5">check_circle</span>
-                <span className="font-body text-sm text-on-background">{p}</span>
-              </div>
-            ))}
+          <div className="md:col-span-2 reveal reveal-right">
+            {/* Direct repair program & preferred carriers */}
+            <h4 className="font-label text-[10px] tracking-widest-custom uppercase text-on-surface-variant mb-4">Direct Repair &amp; Preferred Carriers</h4>
+            <div className="flex flex-wrap gap-x-3 gap-y-3 mb-10">
+              {carriers.map((c) => (
+                <span key={c} className="font-label text-[10px] tracking-widest-custom uppercase text-on-surface-variant border border-outline-variant/40 px-4 py-2.5 hover:border-primary-container hover:text-primary-container transition-colors">
+                  {c}
+                </span>
+              ))}
+            </div>
+
+            {/* Logistics & convenience */}
+            <h4 className="font-label text-[10px] tracking-widest-custom uppercase text-on-surface-variant mb-4">Logistics &amp; Convenience</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+              {logistics.map((p) => (
+                <div key={p} className="flex items-start gap-3 border-l-2 border-outline-variant/40 pl-4 py-2 hover:border-primary-container transition-colors">
+                  <span className="material-symbols-outlined text-primary-container text-base mt-0.5">check_circle</span>
+                  <span className="font-body text-sm text-on-background">{p}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -964,12 +987,12 @@ function Location() {
                 <h3 className="font-label text-xs tracking-widest-custom uppercase text-ink-faint mb-2">Hours of Operation</h3>
                 <ul className="text-sm font-body text-ink-muted space-y-2">
                   {[
-                    ['Monday', '7:30 AM - 7:00 PM'],
-                    ['Tuesday', '7:30 AM - 7:00 PM'],
-                    ['Wednesday', '7:30 AM - 7:00 PM'],
-                    ['Thursday', '7:30 AM - 7:00 PM'],
-                    ['Friday', '7:30 AM - 7:00 PM'],
-                    ['Saturday', '8:00 AM - 5:00 PM'],
+                    ['Monday', '7:30 AM - 5:00 PM'],
+                    ['Tuesday', '7:30 AM - 5:00 PM'],
+                    ['Wednesday', '7:30 AM - 5:00 PM'],
+                    ['Thursday', '7:30 AM - 5:00 PM'],
+                    ['Friday', '7:30 AM - 5:00 PM'],
+                    ['Saturday', '8:00 AM - 12:00 PM'],
                   ].map(([day, hrs]) => (
                     <li key={day} className="flex justify-between border-b border-paper-line pb-2">
                       <span>{day}</span>
@@ -1135,7 +1158,7 @@ function Footer() {
               <li className="flex items-start gap-3">
                 <span className="material-symbols-outlined text-[20px] text-accent-deep shrink-0 mt-px">schedule</span>
                 <div className="font-body text-sm text-ink-muted leading-relaxed">
-                  <div>Mon - Fri: 8:00 AM - 6:00 PM</div>
+                  <div>Mon - Fri: 7:30 AM - 5:00 PM</div>
                   <div>Sat: 8:00 AM - 12:00 PM</div>
                   <div>Sun: Closed</div>
                 </div>
