@@ -85,7 +85,30 @@ function useScrollReveal() {
 
 const NAV_HEIGHT = 90;
 
+const NAV_LINKS = [
+  { label: 'Services', href: '#services' },
+  { label: 'Certifications', href: '#certifications' },
+  { label: 'Facility', href: '#facility' },
+  { label: 'Team', href: '#team' },
+  { label: 'Location & Hours', href: '#location' },
+];
+
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Lock body scroll while the mobile menu is open; close it on Escape.
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [menuOpen]);
+
   const linkBase =
     'font-headline font-bold tracking-tighter uppercase px-3 py-2 cursor-pointer text-sm transition-colors duration-300';
   const linkColor = 'text-paper hover:text-primary-container';
@@ -93,62 +116,126 @@ function Navbar() {
   return (
     // Anchored to the top of the page (not sticky). It scrolls away with the hero.
     // Scroll back to the top to reach the menu again.
-    <nav
-      className="absolute top-0 inset-x-0 z-50"
-      style={{ height: NAV_HEIGHT }}
-    >
-      <div className="relative h-full flex justify-between items-center w-full px-4 sm:px-6 lg:px-8 max-w-none gap-4">
-        <a
-          className="shrink-0 inline-flex items-center overflow-hidden h-14 sm:h-16 lg:h-20"
-          href="#"
-          aria-label="Williamson Collision Center home"
-        >
-          <img
-            src={LOGO.brandWhite}
-            alt="Williamson Collision Center · GM Certified"
-            className="h-20 sm:h-24 lg:h-[7.5rem] w-auto max-w-[72vw] object-contain object-left"
-            loading="eager"
-            decoding="async"
-          />
-        </a>
-
-        <div className="hidden md:flex items-center gap-5 xl:gap-8">
-          <a className={`${linkBase} ${linkColor}`} href="#services">Services</a>
-          <a className={`${linkBase} ${linkColor}`} href="#certifications">Certifications</a>
-          <a className={`${linkBase} ${linkColor}`} href="#facility">Facility</a>
-          <a className={`${linkBase} ${linkColor}`} href="#team">Team</a>
-          <a className={`${linkBase} ${linkColor}`} href="#location">Location & Hours</a>
-        </div>
-
-        <div className="flex items-center gap-6">
+    <>
+      <nav
+        className="absolute top-0 inset-x-0 z-50"
+        style={{ height: NAV_HEIGHT }}
+      >
+        <div className="relative h-full flex justify-between items-center w-full px-4 sm:px-6 lg:px-8 max-w-none gap-4">
           <a
-            aria-label="Call Williamson-Collision"
-            href="tel:+13052388801"
-            className="hidden lg:inline-flex items-center gap-2 transition-colors font-label text-xs tracking-widest-custom uppercase text-paper/80 hover:text-primary-container"
+            className="shrink-0 inline-flex items-center overflow-hidden h-[4.5rem] sm:h-16 lg:h-20"
+            href="#"
+            aria-label="Williamson Collision Center home"
           >
-            <span className="material-symbols-outlined text-base">call</span>
-            305-238-8801
+            <img
+              src={LOGO.brandWhite}
+              alt="Williamson Collision Center · GM Certified"
+              className="h-24 sm:h-24 lg:h-[7.5rem] w-auto max-w-[72vw] object-contain object-left"
+              loading="eager"
+              decoding="async"
+            />
           </a>
-          <a
-            className="hidden lg:inline-flex font-headline font-bold uppercase tracking-tighter px-6 py-3 transition-all duration-500 ease-in-out cursor-pointer active:opacity-80 bg-primary-container text-on-primary-container hover:bg-white"
-            href={CARWISE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            SCHEDULE REPAIR
-          </a>
-          <button className="md:hidden text-paper">
-            <span className="material-symbols-outlined">menu</span>
-          </button>
+
+          <div className="hidden md:flex items-center gap-5 xl:gap-8">
+            {NAV_LINKS.map((l) => (
+              <a key={l.href} className={`${linkBase} ${linkColor}`} href={l.href}>{l.label}</a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-6">
+            <a
+              aria-label="Call Williamson-Collision"
+              href="tel:+13052388801"
+              className="hidden lg:inline-flex items-center gap-2 transition-colors font-label text-xs tracking-widest-custom uppercase text-paper/80 hover:text-primary-container"
+            >
+              <span className="material-symbols-outlined text-base">call</span>
+              305-238-8801
+            </a>
+            <a
+              className="hidden lg:inline-flex font-headline font-bold uppercase tracking-tighter px-6 py-3 transition-all duration-500 ease-in-out cursor-pointer active:opacity-80 bg-primary-container text-on-primary-container hover:bg-white"
+              href={CARWISE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              SCHEDULE REPAIR
+            </a>
+            <button
+              type="button"
+              className="md:hidden text-paper p-1 -mr-1"
+              aria-label="Open menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen(true)}
+            >
+              <span className="material-symbols-outlined text-4xl">menu</span>
+            </button>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {/* Mobile full-screen menu */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-[60] md:hidden anim-fade-in" role="dialog" aria-modal="true" aria-label="Menu">
+          <div className="absolute inset-0 bg-background/97 backdrop-blur-sm"></div>
+          <div className="relative h-full flex flex-col">
+            <div className="flex items-center justify-between px-4 sm:px-6" style={{ height: NAV_HEIGHT }}>
+              <img
+                src={LOGO.brandWhite}
+                alt="Williamson Collision Center"
+                className="h-16 w-auto max-w-[64vw] object-contain object-left"
+              />
+              <button
+                type="button"
+                className="text-paper p-1 -mr-1"
+                aria-label="Close menu"
+                onClick={() => setMenuOpen(false)}
+              >
+                <span className="material-symbols-outlined text-4xl">close</span>
+              </button>
+            </div>
+
+            <nav className="flex-1 flex flex-col justify-center px-6 sm:px-8">
+              {NAV_LINKS.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="group flex items-center justify-between border-b border-outline-variant/20 py-4 text-on-background hover:text-primary-container transition-colors"
+                >
+                  <span className="font-headline text-3xl sm:text-4xl font-extrabold uppercase tracking-tighter leading-none">{l.label}</span>
+                  <span className="material-symbols-outlined text-on-surface-variant group-hover:text-primary-container transition-colors">arrow_forward</span>
+                </a>
+              ))}
+            </nav>
+
+            <div className="px-6 sm:px-8 pb-10 pt-4 flex flex-col gap-3">
+              <a
+                href="tel:+13052388801"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-center gap-2 border border-outline-variant/40 py-4 font-headline font-bold uppercase tracking-tighter text-paper hover:border-primary-container hover:text-primary-container transition-colors"
+              >
+                <span className="material-symbols-outlined text-lg">call</span>
+                305-238-8801
+              </a>
+              <a
+                href={CARWISE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-center py-4 bg-primary-container text-on-primary-container font-headline font-bold uppercase tracking-tighter hover:bg-white transition-colors"
+              >
+                Schedule Repair
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
 function Hero() {
   return (
-    <section data-tone="dark" className="relative w-full h-[860px] min-h-[640px] flex items-center overflow-hidden bg-background">
+    <section data-tone="dark" className="relative w-full h-[88vh] min-h-[560px] md:h-[860px] md:min-h-[640px] flex items-center overflow-hidden bg-background">
       {/* Full-bleed hero image covers the entire section */}
       <div className="absolute inset-0 z-0">
         <img
@@ -164,7 +251,7 @@ function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-background/45 via-transparent to-background/15"></div>
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-12">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
         <div className="max-w-3xl">
           <h2 className="font-label text-xs tracking-widest-custom uppercase text-primary-container mb-6 border-l-2 border-primary-container pl-4 anim-fade-up" style={{ animationDelay: '0.15s' }}>
             The Body Shop of Williamson Automotive &middot; South Miami
@@ -289,13 +376,13 @@ function BrandStrip() {
   ];
 
   return (
-    <section id="certifications" data-tone="light" className="py-24 md:py-32 bg-paper relative overflow-hidden">
+    <section id="certifications" data-tone="light" className="py-16 md:py-32 bg-paper relative overflow-hidden">
       {/* Soft gold washes for warmth without darkening the paper tone */}
       <div className="absolute -top-20 -left-40 w-[700px] h-[700px] bg-accent-deep/[0.06] rounded-full blur-[160px] pointer-events-none"></div>
       <div className="absolute -bottom-20 right-0 w-[500px] h-[500px] bg-accent-deep/[0.04] rounded-full blur-[140px] pointer-events-none"></div>
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-deep/40 to-transparent pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-8 md:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10">
         {/* HEADER */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end mb-14 md:mb-16">
           <div className="lg:col-span-7 reveal reveal-left">
@@ -367,9 +454,8 @@ function BrandStrip() {
             <div className="font-headline text-sm md:text-base font-bold tracking-tight uppercase text-ink leading-tight">I-Car Gold Class &middot; ASE &amp; AATI Certified Technicians</div>
           </div>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-5 md:ml-auto">
-            <img src={LOGO.icarGold} alt="I-CAR Gold Class certified collision repair shop" className="h-12 md:h-14 w-auto object-contain" loading="lazy" />
-            <img src={LOGO.ase} alt="ASE Certified Technicians" className="h-12 md:h-14 w-auto object-contain" loading="lazy" />
-            <img src={LOGO.aati} alt="AATI Certified Technicians" className="h-12 md:h-14 w-auto object-contain" loading="lazy" />
+            <img src={LOGO.icarGold} alt="I-CAR Gold Class certified collision repair shop" className="h-14 md:h-16 w-auto object-contain" loading="lazy" />
+            {/* ASE & AATI logos: drop ASE-Certified.png / AATI-Certified.png into public/images/Williamson/ then restore these <img> tags */}
           </div>
         </div>
 
@@ -395,10 +481,10 @@ function BrandStrip() {
 
 function ServicesBento() {
   return (
-    <section id="services" data-tone="dark" className="py-32 bg-background relative overflow-hidden">
+    <section id="services" data-tone="dark" className="py-20 md:py-32 bg-background relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary-container/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-8 md:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10">
         <div className="mb-14 md:mb-20 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-end">
           <div className="md:col-span-7 reveal">
             <h2 className="font-label text-xs tracking-widest-custom uppercase text-primary-container mb-5 border-l-2 border-primary-container pl-4">Signature Services</h2>
@@ -412,7 +498,7 @@ function ServicesBento() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="group relative overflow-hidden bg-surface-container-lowest border border-outline-variant/30 min-h-[460px] md:col-span-2 hover:border-primary-container/50 transition-all duration-500 shadow-2xl shadow-black/40 reveal">
+          <div className="group relative overflow-hidden bg-surface-container-lowest border border-outline-variant/30 min-h-[360px] md:min-h-[460px] md:col-span-2 hover:border-primary-container/50 transition-all duration-500 shadow-2xl shadow-black/40 reveal">
             <div className="absolute inset-0 z-0">
               <img alt="SUV on Car-O-Liner alignment rack during structural collision repair" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" src={IMG.frameRackWide} />
               <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/35 to-transparent"></div>
@@ -424,7 +510,7 @@ function ServicesBento() {
             </div>
           </div>
 
-          <div className="group relative overflow-hidden bg-surface-container-lowest border border-outline-variant/30 min-h-[460px] hover:border-primary-container/50 transition-all duration-500 shadow-2xl shadow-black/40 reveal reveal-delay-2">
+          <div className="group relative overflow-hidden bg-surface-container-lowest border border-outline-variant/30 min-h-[360px] md:min-h-[460px] hover:border-primary-container/50 transition-all duration-500 shadow-2xl shadow-black/40 reveal reveal-delay-2">
             <div className="absolute inset-0 z-0">
               <img alt="Cadillac Escalade masked for paint inside the aluminum repair bay" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" src={IMG.escaladeMasked} />
               <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/35 to-transparent"></div>
@@ -436,7 +522,7 @@ function ServicesBento() {
             </div>
           </div>
 
-          <div className="group relative overflow-hidden bg-surface-container-lowest border border-outline-variant/30 min-h-[400px] hover:border-primary-container/50 transition-all duration-500 shadow-2xl shadow-black/40 reveal reveal-delay-1">
+          <div className="group relative overflow-hidden bg-surface-container-lowest border border-outline-variant/30 min-h-[320px] md:min-h-[400px] hover:border-primary-container/50 transition-all duration-500 shadow-2xl shadow-black/40 reveal reveal-delay-1">
             <div className="absolute inset-0 z-0">
               <img alt="In-house paint mixing room with full refinish toner library" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" src={IMG.paintMixRoom} />
               <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/35 to-transparent"></div>
@@ -448,7 +534,7 @@ function ServicesBento() {
             </div>
           </div>
 
-          <div className="group relative overflow-hidden bg-surface-container-lowest border border-outline-variant/30 min-h-[400px] md:col-span-2 hover:border-primary-container/50 transition-all duration-500 shadow-2xl shadow-black/40 reveal reveal-delay-2">
+          <div className="group relative overflow-hidden bg-surface-container-lowest border border-outline-variant/30 min-h-[320px] md:min-h-[400px] md:col-span-2 hover:border-primary-container/50 transition-all duration-500 shadow-2xl shadow-black/40 reveal reveal-delay-2">
             <div className="absolute inset-0 z-0">
               <img alt="Replacement bumper test-fit on a Cadillac SUV during panel repair" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" src={IMG.escaladeBumper} />
               <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/35 to-transparent"></div>
@@ -460,7 +546,7 @@ function ServicesBento() {
             </div>
           </div>
 
-          <div className="group relative overflow-hidden bg-surface-container-lowest border border-outline-variant/30 min-h-[400px] md:col-span-2 hover:border-primary-container/50 transition-all duration-500 shadow-2xl shadow-black/40 reveal reveal-delay-3">
+          <div className="group relative overflow-hidden bg-surface-container-lowest border border-outline-variant/30 min-h-[320px] md:min-h-[400px] md:col-span-2 hover:border-primary-container/50 transition-all duration-500 shadow-2xl shadow-black/40 reveal reveal-delay-3">
             <div className="absolute inset-0 z-0">
               <img alt="Diagnostic and ADAS calibration bay" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" src={IMG.shopOverview} />
               <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/35 to-transparent"></div>
@@ -472,7 +558,7 @@ function ServicesBento() {
             </div>
           </div>
 
-          <a href={CARWISE_URL} target="_blank" rel="noopener noreferrer" className="group relative overflow-hidden bg-surface-container-lowest border border-outline-variant/30 min-h-[400px] hover:border-primary-container/60 transition-all duration-500 shadow-2xl shadow-black/40 reveal reveal-delay-4">
+          <a href={CARWISE_URL} target="_blank" rel="noopener noreferrer" className="group relative overflow-hidden bg-surface-container-lowest border border-outline-variant/30 min-h-[320px] md:min-h-[400px] hover:border-primary-container/60 transition-all duration-500 shadow-2xl shadow-black/40 reveal reveal-delay-4">
             <div className="absolute inset-0 z-0">
               <img alt="On-site Enterprise Rent-A-Car desk at the Williamson-Collision Center" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" src={IMG.entrance} />
               <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent"></div>
@@ -544,8 +630,8 @@ function FacilityTour() {
   };
 
   return (
-    <section id="facility" data-tone="light" className="py-32 bg-paper relative">
-      <div className="max-w-7xl mx-auto px-8 md:px-12">
+    <section id="facility" data-tone="light" className="py-20 md:py-32 bg-paper relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-12 md:mb-14 items-end">
           <div className="lg:col-span-7 reveal reveal-left">
             <h2 className="font-label text-xs tracking-widest-custom uppercase text-accent-deep mb-5 border-l-2 border-accent-deep pl-4">Inside the Shop</h2>
@@ -669,10 +755,10 @@ function WaterbornePaint() {
   ];
 
   return (
-    <section data-tone="dark" className="py-32 bg-background relative overflow-hidden">
+    <section data-tone="dark" className="py-20 md:py-32 bg-background relative overflow-hidden">
       <div className="absolute -top-24 right-0 w-[680px] h-[680px] bg-primary-container/10 rounded-full blur-[140px] pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-8 md:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10">
         {/* HEADER */}
         <div className="mb-14 md:mb-16 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-end">
           <div className="md:col-span-7 reveal">
@@ -725,8 +811,8 @@ function WaterbornePaint() {
 
 function Process() {
   return (
-    <section data-tone="dark" className="py-24 bg-background relative">
-      <div className="max-w-7xl mx-auto px-8 md:px-12">
+    <section data-tone="dark" className="py-16 md:py-24 bg-background relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
         <div className="mb-16 reveal">
           <h2 className="font-label text-xs tracking-widest-custom uppercase text-primary-container mb-4 border-l-2 border-primary-container pl-4">The Williamson Automotive Standard</h2>
           <h3 className="font-headline text-4xl md:text-5xl font-extrabold uppercase tracking-tighter text-on-background leading-tight">
@@ -777,8 +863,8 @@ function Team() {
   ];
 
   return (
-    <section id="team" data-tone="light" className="py-32 bg-paper relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8 md:px-12">
+    <section id="team" data-tone="light" className="py-20 md:py-32 bg-paper relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-12 md:mb-14 items-end">
           <div className="lg:col-span-7 reveal">
             <h2 className="font-label text-xs tracking-widest-custom uppercase text-accent-deep mb-5 border-l-2 border-accent-deep pl-4">The People</h2>
@@ -859,8 +945,8 @@ function InsurancePartners() {
     'All Major Carriers Accepted',
   ];
   return (
-    <section data-tone="dark" className="py-20 bg-background border-t border-outline-variant/20">
-      <div className="max-w-7xl mx-auto px-8 md:px-12">
+    <section data-tone="dark" className="py-16 md:py-20 bg-background border-t border-outline-variant/20">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
           <div className="reveal reveal-left">
             <h2 className="font-label text-xs tracking-widest-custom uppercase text-primary-container mb-4 border-l-2 border-primary-container pl-4">Insurance &amp; Logistics</h2>
@@ -914,7 +1000,7 @@ function WeAreHere() {
         </div>
 
         {/* CTA content */}
-        <div className="lg:col-span-7 bg-background flex flex-col justify-center gap-10 md:gap-12 px-8 md:px-12 lg:px-16 py-14 md:py-16 lg:py-20">
+        <div className="lg:col-span-7 bg-background flex flex-col justify-center gap-10 md:gap-12 px-5 sm:px-8 md:px-12 lg:px-16 py-14 md:py-16 lg:py-20">
           <div className="reveal">
             <h2 className="font-label text-xs tracking-widest-custom uppercase text-primary-container mb-4 border-l-2 border-primary-container pl-4">Ready to get started?</h2>
             <h3 className="font-headline text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase tracking-tighter text-on-background leading-[0.95]">
@@ -968,8 +1054,8 @@ function WeAreHere() {
 
 function Location() {
   return (
-    <section id="location" data-tone="light" className="py-24 bg-paper border-t border-paper-line">
-      <div className="max-w-7xl mx-auto px-8 md:px-12">
+    <section id="location" data-tone="light" className="py-16 md:py-24 bg-paper border-t border-paper-line">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="reveal reveal-left">
             <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-ink mb-6">Williamson Automotive Collision Center</h2>
@@ -1074,7 +1160,7 @@ function Footer() {
 
   return (
     <footer className="bg-paper border-t border-paper-line">
-      <div className="max-w-7xl mx-auto px-8 md:px-12 pt-14 md:pt-16 pb-10">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 pt-14 md:pt-16 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
           {/* Brand */}
           <div className="md:col-span-4">
@@ -1093,21 +1179,21 @@ function Footer() {
               Proudly serving Miami and the surrounding communities with the certified collision repair you expect from the Williamson Automotive name.
             </p>
             <div className="mt-6 flex gap-3">
-              <a href="#" aria-label="Facebook" className="w-9 h-9 rounded-full border border-paper-line flex items-center justify-center text-ink-muted hover:text-accent-deep hover:border-accent-deep transition-colors">
+              <a href="https://www.facebook.com/williamsoncadillacbuickgmc" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-9 h-9 rounded-full border border-paper-line flex items-center justify-center text-ink-muted hover:text-accent-deep hover:border-accent-deep transition-colors">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
                   <path d="M13.5 21v-7.125h2.49l.373-2.892H13.5V9.142c0-.836.232-1.406 1.432-1.406h1.53V5.151a20.5 20.5 0 0 0-2.231-.114c-2.207 0-3.719 1.347-3.719 3.822v2.124H8v2.892h2.512V21h2.988z"/>
                 </svg>
               </a>
-              <a href="#" aria-label="Instagram" className="w-9 h-9 rounded-full border border-paper-line flex items-center justify-center text-ink-muted hover:text-accent-deep hover:border-accent-deep transition-colors">
+              <a href="https://www.instagram.com/williamsoncadillacbuickgmc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-9 h-9 rounded-full border border-paper-line flex items-center justify-center text-ink-muted hover:text-accent-deep hover:border-accent-deep transition-colors">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
                   <rect x="3" y="3" width="18" height="18" rx="5" ry="5"/>
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                 </svg>
               </a>
-              <a href="#" aria-label="Google" className="w-9 h-9 rounded-full border border-paper-line flex items-center justify-center text-ink-muted hover:text-accent-deep hover:border-accent-deep transition-colors">
+              <a href="https://www.tiktok.com/@wagcadillacbuickgmc" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="w-9 h-9 rounded-full border border-paper-line flex items-center justify-center text-ink-muted hover:text-accent-deep hover:border-accent-deep transition-colors">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
-                  <path d="M21.35 11.1H12v3.2h5.35c-.5 2.45-2.55 4.2-5.35 4.2-3.2 0-5.8-2.6-5.8-5.8s2.6-5.8 5.8-5.8c1.45 0 2.75.5 3.75 1.45l2.4-2.4C16.45 4.35 14.35 3.5 12 3.5 6.85 3.5 2.7 7.65 2.7 12.8s4.15 9.3 9.3 9.3c5.4 0 9.05-3.8 9.05-9.15 0-.65-.05-1.25-.2-1.85z"/>
+                  <path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64a5.67 5.67 0 0 0 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.36 4.36 0 0 1-3.24-1.48z"/>
                 </svg>
               </a>
             </div>
@@ -1170,11 +1256,12 @@ function Footer() {
 
       {/* Bottom strip */}
       <div className="border-t border-paper-line">
-        <div className="max-w-7xl mx-auto px-8 md:px-12 py-5 flex flex-col md:flex-row justify-between items-center gap-3">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 py-5 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="font-body text-xs text-ink-muted">© 2026 Williamson Automotive Collision Center. All Rights Reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="font-body text-xs text-ink-muted hover:text-accent-deep transition-colors">Privacy Policy</a>
+            <a href="https://www.williamsoncadillac.com/privacy-policy" target="_blank" rel="noopener noreferrer" className="font-body text-xs text-ink-muted hover:text-accent-deep transition-colors">Privacy Policy</a>
             <a href="#" className="font-body text-xs text-ink-muted hover:text-accent-deep transition-colors">Terms of Service</a>
+            <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" className="font-body text-xs text-ink-muted hover:text-accent-deep transition-colors">Sitemap</a>
           </div>
         </div>
       </div>

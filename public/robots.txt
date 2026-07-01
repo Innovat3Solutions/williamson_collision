@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.williamsonautomotivegroup.com/collision-center/sitemap.xml
