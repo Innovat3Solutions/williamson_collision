@@ -9,7 +9,8 @@ export default defineConfig({
   // index.html, and public/sitemap.xml together (see DEPLOY.md).
   // VITE_BASE overrides it for previews served elsewhere (e.g. GitHub Pages
   // serves this repo at /williamson_collision/ — see .github/workflows/deploy.yml).
-  base: process.env.VITE_BASE ?? '/collision-center/',
+  // Vercel serves at the domain root, so default to '/' there.
+  base: process.env.VITE_BASE ?? (process.env.VERCEL ? '/' : '/collision-center/'),
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
