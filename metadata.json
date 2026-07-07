@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "description": "",
+  "name": "Williamson Automotive Collision Center",
+  "description": "Single-page site for the Williamson Automotive Collision Center in South Miami, served under /collision-center/ on the main Williamson site.",
   "requestFramePermissions": [],
   "majorCapabilities": []
 }

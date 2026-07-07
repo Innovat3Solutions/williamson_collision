@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@400;700;800&display=swap');
-
+/* Fonts load via <link> tags in index.html (preconnect + non-blocking)
+   instead of CSS @import, which would chain-block first render. */
 @import "tailwindcss";
 
 @theme {
@@ -44,6 +43,12 @@
 @layer base {
   * {
     border-radius: 0 !important;
+  }
+  /* Pre-reveal elements sit translated ±28px (.reveal-left/right), which would
+     otherwise widen the page and cause a horizontal scrollbar on phones. */
+  html,
+  body {
+    overflow-x: clip;
   }
   body {
     background-color: var(--color-background);

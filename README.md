@@ -1,20 +1,26 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Williamson Automotive Collision Center
 
-# Run and deploy your AI Studio app
+Single-page marketing site for the Williamson Automotive Collision Center (South Miami).
+Built with Vite + React + Tailwind CSS v4. Deploys as a **section of the main Williamson
+site** at `/collision-center/` — not at a domain root and not on its own subdomain.
 
-This contains everything you need to run your app locally.
+## Develop
 
-View your app in AI Studio: https://ai.studio/apps/b923c49f-82bd-4fd9-90e3-b2e3cee3fecd
+```bash
+npm install
+npm run dev        # http://localhost:3000
+```
 
-## Run Locally
+## Build
 
-**Prerequisites:**  Node.js
+```bash
+npm run build      # outputs dist/ with /collision-center/ base paths
+npm run preview    # serves the production build locally
+npm run lint       # typecheck (tsc --noEmit)
+```
 
+Because the production base path is `/collision-center/`, the dev server also serves the
+site at `http://localhost:3000/collision-center/`.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+See [DEPLOY.md](DEPLOY.md) for the go-live checklist (hosting path, robots/sitemap,
+Search Console, Google Business Profile).
