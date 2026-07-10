@@ -4,13 +4,12 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig({
-  // The page is served as a section of the main Williamson site, not at the
-  // domain root. If the path segment ever changes, update this, the URLs in
-  // index.html, and public/sitemap.xml together (see DEPLOY.md).
-  // VITE_BASE overrides it for previews served elsewhere (e.g. GitHub Pages
-  // serves this repo at /williamson_collision/ — see .github/workflows/deploy.yml).
-  // Vercel serves at the domain root, so default to '/' there.
-  base: process.env.VITE_BASE ?? (process.env.VERCEL ? '/' : '/collision-center/'),
+  // The site lives at its own domain (williamsoncollision.com), served from the
+  // root. VITE_BASE overrides the base for previews served under a subpath
+  // (e.g. GitHub Pages serves this repo at /williamson_collision/ — see
+  // .github/workflows/deploy.yml). If the domain ever changes, update the URLs
+  // in index.html, public/sitemap.xml, and public/robots.txt (see DEPLOY.md).
+  base: process.env.VITE_BASE ?? '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

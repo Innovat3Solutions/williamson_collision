@@ -1,8 +1,8 @@
 # Williamson Automotive Collision Center
 
 Single-page marketing site for the Williamson Automotive Collision Center (South Miami).
-Built with Vite + React + Tailwind CSS v4. Deploys as a **section of the main Williamson
-site** at `/collision-center/` — not at a domain root and not on its own subdomain.
+Built with Vite + React + Tailwind CSS v4. Lives at **https://williamsoncollision.com/**
+(hosted on Vercel, project `williamson-collision`).
 
 ## Develop
 
@@ -19,8 +19,5 @@ npm run preview    # serves the production build locally
 npm run lint       # typecheck (tsc --noEmit)
 ```
 
-Because the production base path is `/collision-center/`, the dev server also serves the
-site at `http://localhost:3000/collision-center/`.
-
-See [DEPLOY.md](DEPLOY.md) for the go-live checklist (hosting path, robots/sitemap,
-Search Console, Google Business Profile).
+See [DEPLOY.md](DEPLOY.md) for the deployment setup (Vercel hosting, domain/nameserver
+connection, Search Console, Google Business Profile).

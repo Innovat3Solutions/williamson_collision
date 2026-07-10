@@ -1,57 +1,48 @@
 # Go-Live Checklist
 
-The site is built to live at:
+The site lives at its own domain:
 
 ```
-https://www.williamsonautomotivegroup.com/collision-center/
+https://williamsoncollision.com/
 ```
 
-It is **not** a standalone site — it is a section of the main Williamson website. That
-placement drives everything below.
+> **History**: the original plan was a page inside the main Williamson site at
+> `/collision-center/`. That changed in July 2026 — the site now has its own domain,
+> hosted on Vercel. The Vite `base` defaults to `/` accordingly.
 
-## 1. Hosting
+## 1. Hosting (Vercel)
 
-- Deploy the contents of `dist/` so they are served under the `/collision-center/` path
-  (e.g. reverse-proxy or a subdirectory on the main site's host).
-- Ensure `/collision-center` (no trailing slash) 301-redirects to `/collision-center/`.
-- The Vite `base` is set in [vite.config.ts](vite.config.ts). If the path segment ever
-  changes (e.g. to `/body-shop/`), update **all three together**:
-  1. `base` in `vite.config.ts`
-  2. The absolute URLs in `index.html` (canonical, og:url, og:image, JSON-LD)
-  3. `public/sitemap.xml`
-- If the domain differs from `williamsonautomotivegroup.com`, update the same
-  `index.html` and `sitemap.xml` URLs.
+- Vercel project: **williamson-collision** (team "Innovat3 Solutions' projects").
+- Deploy from the project directory: `npx vercel deploy --prod --yes`.
+- Git integration is NOT connected — pushes to GitHub do **not** auto-deploy to Vercel.
+  Connect the repo at https://vercel.com/new for push-to-deploy, or keep deploying via CLI.
+- GitHub Pages also builds on every push (preview only):
+  https://innovat3solutions.github.io/williamson_collision/
 
-## 2. Search engines
+## 2. Connect the domain (registrar side)
 
-- **robots.txt**: crawlers only read robots.txt at the domain root, so this project does
-  not ship one. Ask whoever manages the main site to add this line to the root
-  `https://www.williamsonautomotivegroup.com/robots.txt`:
+The domain `williamsoncollision.com` is registered at the registrar shown in the
+client's Domain Portfolio (currently on parking nameservers). To connect it:
 
-  ```
-  Sitemap: https://www.williamsonautomotivegroup.com/collision-center/sitemap.xml
-  ```
+1. Registrar → `williamsoncollision.com` → **DNS → Nameservers → Change Nameservers**.
+2. Choose "custom / my own nameservers" and enter exactly:
+   ```
+   ns1.vercel-dns.com
+   ns2.vercel-dns.com
+   ```
+3. Save. Propagation is usually minutes, can take up to 24–48h.
+4. Vercel then verifies the domain automatically and issues SSL. `www.` redirects to
+   the apex domain.
 
-- **Search Console**: alternatively (or additionally), submit
-  `/collision-center/sitemap.xml` in the Google Search Console property for the main
-  domain.
-- The main site's navigation should link to `/collision-center/` (e.g. a "Collision
-  Center" tab) so the page isn't an orphan.
+## 3. After the domain is live
 
-## 3. Google Business Profile
-
-- Set the collision center's GBP "Website" field to
-  `https://www.williamsonautomotivegroup.com/collision-center/`.
-- Confirm the GBP name / address / phone exactly match the page footer
-  (19300 SW 108 Ave, Miami, FL 33157 · 305-238-8801).
-
-## 4. Verify before announcing
-
-- [ ] Page loads at the final URL with all images and styles (no 404s in devtools).
-- [ ] `info@williamsoncollision.com` mailbox exists and is monitored (it's the footer
-      contact email).
-- [ ] Share the URL in iMessage/Facebook and confirm the link preview shows the facility
-      photo (og:image).
+- [ ] Update the Google Business Profile "Website" field to `https://williamsoncollision.com/`.
+- [ ] Submit `https://williamsoncollision.com/sitemap.xml` in Google Search Console
+      (domain property, verified via DNS TXT — addable in Vercel DNS).
+- [ ] Ask the main Williamson site to link to the new domain from its nav ("Collision Center").
+- [ ] Confirm `info@williamsoncollision.com` mailbox exists (MX records must be added in
+      Vercel DNS if email is hosted elsewhere — nameserver moves drop existing MX records).
+- [ ] Share the URL in iMessage/Facebook and confirm the link preview shows the facility photo.
 - [ ] Validate structured data at https://search.google.com/test/rich-results.
 
 ## Known follow-ups (not blockers)

@@ -1,6 +1,6 @@
 {
   "name": "Williamson Automotive Collision Center",
-  "description": "Single-page site for the Williamson Automotive Collision Center in South Miami, served under /collision-center/ on the main Williamson site.",
+  "description": "Single-page site for the Williamson Automotive Collision Center in South Miami, live at williamsoncollision.com (Vercel).",
   "requestFramePermissions": [],
   "majorCapabilities": []
 }
